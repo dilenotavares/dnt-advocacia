@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DNT Advocacia | Defesa de Alto Padrão</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="icon" href="./assets/favicon.icon" type="image/icon">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Configuration -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                blue: '#B0C4DE', // LightSteelBlue
+                gold: '#C5A059', // Dourado
+                dark: '#1e293b', // Slate 800
+                light: '#f8fafc', // Slate 50
+              }
+            },
+            fontFamily: {
+              playfair: ['"Playfair Display"', 'serif'],
+              lato: ['Lato', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      /* Smooth Scrolling */
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: 'Lato', sans-serif;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Playfair Display', serif;
+      }
+      
+      /* Accordion Transitions */
+      .accordion-content {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+      }
+      .accordion-content.active {
+        opacity: 1;
+        max-height: 500px; /* Arbitrary large height */
+      }
+      .accordion-icon {
+        transition: transform 0.3s ease;
+      }
+      .accordion-icon.rotate-180 {
+        transform: rotate(180deg);
+      }
+    </style>
+  <link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-slate-50 text-slate-800 antialiased overflow-x-hidden">
+
+    <!-- HEADER -->
+    <header id="header" class="fixed w-full z-50 transition-all duration-300 bg-transparent py-4">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center">
+          <!-- Logo -->
+          <div class="flex-shrink-0">
+            <a href="#" id="logo" class="text-2xl font-bold font-playfair tracking-wide text-brand-dark md:text-white transition-colors duration-300">
+              DNT<span class="text-brand-gold">Advocacia</span>
+            </a>
+          </div>
+
+          <!-- Desktop Menu -->
+          <nav class="hidden md:flex space-x-8 items-center">
+            <a href="#home" class="nav-link text-sm font-medium uppercase tracking-wider hover:text-brand-gold transition-colors text-white">Home</a>
+            <a href="#sobre" class="nav-link text-sm font-medium uppercase tracking-wider hover:text-brand-gold transition-colors text-white">Sobre</a>
+            <a href="#servicos" class="nav-link text-sm font-medium uppercase tracking-wider hover:text-brand-gold transition-colors text-white">Serviços</a>
+            <a href="#contato" class="nav-link text-sm font-medium uppercase tracking-wider hover:text-brand-gold transition-colors text-white">Contato</a>
+            <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" class="bg-brand-gold text-white px-5 py-2 rounded-full font-bold text-sm shadow-lg hover:bg-yellow-600 transition-all transform hover:scale-105 flex items-center gap-2">
+              <i class="fa-brands fa-whatsapp text-lg"></i>
+              WhatsApp
+            </a>
+          </nav>
+
+          <!-- Mobile Menu Button -->
+          <div class="md:hidden">
+            <button id="mobile-menu-btn" class="text-2xl focus:outline-none text-brand-dark md:text-white transition-colors duration-300" aria-label="Abrir menu de navegação"
+            aria-expanded="false"
+            aria-controls="mobile-menu">
+              <i id="mobile-menu-icon" class="fa-solid fa-bars"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu Dropdown -->
+      <div id="mobile-menu" class="hidden md:hidden bg-white shadow-xl absolute w-full top-full left-0 border-t border-gray-100">
+        <div class="px-4 pt-2 pb-4 space-y-1 flex flex-col items-center">
+          <a href="#home" class="mobile-link block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-gold">Home</a>
+          <a href="#sobre" class="mobile-link block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-gold">Sobre</a>
+          <a href="#servicos" class="mobile-link block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-gold">Serviços</a>
+          <a href="#contato" class="mobile-link block px-3 py-2 text-base font-medium text-gray-700 hover:text-brand-gold">Contato</a>
+          <a href="https://wa.me/5591985605052?text=Olá gostaria de mais informações" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-brand-gold hover:bg-yellow-600 w-full">
+            <i class="fa-brands fa-whatsapp mr-2"></i>
+            Falar no WhatsApp
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section id="home" class="relative h-screen flex items-center justify-center">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 z-0">
+          <img 
+            src="./assets/escritorio-adv.jpg" 
+            alt="Escritório de Advocacia" 
+            class="w-full h-full object-cover"
+          />
+          <div class="absolute inset-0 bg-brand-dark/70 mix-blend-multiply"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 max-w-4xl mx-auto px-4 text-center text-white">
+          <span class="block text-brand-gold font-bold tracking-[0.2em] mb-4 uppercase text-sm md:text-base animate-fade-in-up">
+            DNT Advocacia
+          </span>
+          <h1 class="text-4xl md:text-6xl lg:text-7xl font-playfair font-bold leading-tight mb-6">
+            Defendendo seus Direitos <br /> com <span class="text-brand-gold italic">Excelência</span>
+          </h1>
+          <p class="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl mx-auto font-light">
+            Comprometimento, ética e resultados. Sua segurança jurídica é a nossa prioridade absoluta.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a 
+              href="#contato" 
+              class="bg-brand-gold hover:bg-yellow-600 text-white font-bold py-4 px-8 rounded shadow-lg transition-all transform hover:-translate-y-1 text-center"
+            >
+              Agendar Consulta
+            </a>
+            <a 
+              href="#sobre" 
+              class="bg-transparent border-2 border-white hover:bg-white hover:text-brand-dark text-white font-bold py-4 px-8 rounded shadow-lg transition-all text-center"
+            >
+              Conheça o Escritório
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="sobre" class="py-20 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+            
+            <!-- Image Side -->
+            <div class="w-full lg:w-1/2 relative">
+              <div class="absolute -top-4 -left-4 w-full h-full border-4 border-brand-blue rounded-lg z-0 hidden md:block"></div>
+              <img 
+                src="./assets/escritorio-adv.jpg" 
+                alt="Escritório Advogado" 
+                class="relative z-10 rounded-lg shadow-2xl w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-500"
+              />
+            </div>
+
+            <!-- Text Side -->
+            <div class="w-full lg:w-1/2">
+              <h4 class="text-brand-gold font-bold uppercase tracking-widest mb-2 text-sm">Sobre Nós</h4>
+              <h2 class="text-3xl md:text-4xl font-playfair font-bold text-brand-dark mb-6">
+                Experiência e Dedicação <br /> em Cada Caso
+              </h2>
+              <div class="w-20 h-1 bg-brand-blue mb-8"></div>
+              
+              <p class="text-gray-600 leading-relaxed mb-6 text-lg">
+                Com mais de 15 anos de atuação, a <strong>DNT Advocacia</strong> consolidou-se como referência em direito criminal e defesa estratégica. Entendemos que por trás de cada processo existe uma vida, uma família e uma reputação a ser preservada.
+              </p>
+              <p class="text-gray-600 leading-relaxed mb-8">
+                Nossa abordagem combina conhecimento técnico profundo com um atendimento humanizado e personalizado. Não somos apenas advogados; somos seus parceiros na busca pela justiça.
+              </p>
+
+              <a 
+                href="#contato" 
+                class="inline-flex items-center text-brand-gold font-bold hover:text-brand-blue transition-colors group"
+              >
+                Saiba Mais Sobre Nossa História 
+                <i class="fa-solid fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section id="servicos" class="py-20 bg-brand-light relative">
+        <!-- Decorative Background -->
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-brand-blue/5 hidden lg:block"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div class="text-center mb-16">
+            <h4 class="text-brand-gold font-bold uppercase tracking-widest mb-2 text-sm">O Que Fazemos</h4>
+            <h2 class="text-3xl md:text-4xl font-playfair font-bold text-brand-dark">Áreas de Atuação</h2>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Service 1 -->
+            <div class="bg-white p-10 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group border-b-4 border-transparent hover:border-brand-gold">
+              <div class="w-16 h-16 bg-brand-blue/20 rounded-full flex items-center justify-center mb-6 group-hover:bg-brand-gold transition-colors duration-300">
+                <i class="fa-solid fa-gavel text-2xl text-brand-dark group-hover:text-white"></i>
+              </div>
+              <h3 class="text-xl font-playfair font-bold text-brand-dark mb-4">Direito Penal</h3>
+              <p class="text-gray-600 leading-relaxed">
+                Defesa especializada em inquéritos policiais e processos criminais, atuando com vigor em todas as instâncias.
+              </p>
+            </div>
+            <!-- Service 2 -->
+            <div class="bg-white p-10 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group border-b-4 border-transparent hover:border-brand-gold">
+              <div class="w-16 h-16 bg-brand-blue/20 rounded-full flex items-center justify-center mb-6 group-hover:bg-brand-gold transition-colors duration-300">
+                <i class="fa-solid fa-scale-balanced text-2xl text-brand-dark group-hover:text-white"></i>
+              </div>
+              <h3 class="text-xl font-playfair font-bold text-brand-dark mb-4">Direito Civil</h3>
+              <p class="text-gray-600 leading-relaxed">
+                Resolução de conflitos contratuais, responsabilidade civil e indenizações, sempre buscando a melhor reparação.
+              </p>
+            </div>
+            <!-- Service 3 -->
+            <div class="bg-white p-10 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group border-b-4 border-transparent hover:border-brand-gold">
+              <div class="w-16 h-16 bg-brand-blue/20 rounded-full flex items-center justify-center mb-6 group-hover:bg-brand-gold transition-colors duration-300">
+                <i class="fa-solid fa-briefcase text-2xl text-brand-dark group-hover:text-white"></i>
+              </div>
+              <h3 class="text-xl font-playfair font-bold text-brand-dark mb-4">Direito Empresarial</h3>
+              <p class="text-gray-600 leading-relaxed">
+                Consultoria preventiva e contenciosa para empresas, visando segurança jurídica e crescimento sustentável.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS -->
+      <section class="py-20 bg-brand-dark text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-16">
+             <h4 class="text-brand-gold font-bold uppercase tracking-widest mb-2 text-sm">Depoimentos</h4>
+             <h2 class="text-3xl md:text-4xl font-playfair font-bold">O Que Dizem Nossos Clientes</h2>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Testimonial 1 -->
+            <div class="bg-slate-800 p-8 rounded-lg relative border border-slate-700">
+              <div class="absolute -top-5 left-8 text-6xl text-brand-gold opacity-50 font-playfair">&ldquo;</div>
+              <p class="text-gray-300 italic mb-6 relative z-10 pt-4 leading-relaxed">
+                "Profissionalismo impecável. O Dr. e sua equipe me deram todo o suporte necessário em um momento muito delicado. O resultado superou minhas expectativas."
+              </p>
+              <div class="flex items-center gap-4 border-t border-slate-700 pt-4">
+                <div class="w-10 h-10 bg-brand-blue rounded-full flex items-center justify-center text-brand-dark font-bold text-lg">C</div>
+                <div>
+                  <h5 class="font-bold text-brand-gold">Carlos Mendes</h5>
+                  <span class="text-xs text-gray-400 uppercase tracking-wide">Empresário</span>
+                </div>
+              </div>
+            </div>
+            <!-- Testimonial 2 -->
+            <div class="bg-slate-800 p-8 rounded-lg relative border border-slate-700">
+              <div class="absolute -top-5 left-8 text-6xl text-brand-gold opacity-50 font-playfair">&ldquo;</div>
+              <p class="text-gray-300 italic mb-6 relative z-10 pt-4 leading-relaxed">
+                "A atenção aos detalhes e a clareza nas explicações fizeram toda a diferença. Senti segurança do início ao fim do processo. Recomendo de olhos fechados."
+              </p>
+              <div class="flex items-center gap-4 border-t border-slate-700 pt-4">
+                <div class="w-10 h-10 bg-brand-blue rounded-full flex items-center justify-center text-brand-dark font-bold text-lg">F</div>
+                <div>
+                  <h5 class="font-bold text-brand-gold">Fernanda Souza</h5>
+                  <span class="text-xs text-gray-400 uppercase tracking-wide">Médica</span>
+                </div>
+              </div>
+            </div>
+            <!-- Testimonial 3 -->
+            <div class="bg-slate-800 p-8 rounded-lg relative border border-slate-700">
+              <div class="absolute -top-5 left-8 text-6xl text-brand-gold opacity-50 font-playfair">&ldquo;</div>
+              <p class="text-gray-300 italic mb-6 relative z-10 pt-4 leading-relaxed">
+                "Dedicação total ao caso. Fui tratado com dignidade e respeito. A estratégia jurídica adotada foi brilhante e fundamental para a minha absolvição."
+              </p>
+              <div class="flex items-center gap-4 border-t border-slate-700 pt-4">
+                <div class="w-10 h-10 bg-brand-blue rounded-full flex items-center justify-center text-brand-dark font-bold text-lg">R</div>
+                <div>
+                  <h5 class="font-bold text-brand-gold">Roberto Silva</h5>
+                  <span class="text-xs text-gray-400 uppercase tracking-wide">Engenheiro</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-playfair font-bold text-brand-dark">Dúvidas Frequentes</h2>
+          </div>
+
+          <div class="space-y-4">
+            <!-- FAQ Item 1 -->
+            <div class="border border-gray-200 rounded-lg overflow-hidden">
+              <button class="accordion-btn w-full flex justify-between items-center p-6 bg-brand-light hover:bg-brand-blue/10 transition-colors focus:outline-none">
+                <span class="text-lg font-bold text-brand-dark text-left font-playfair">Qual o prazo médio para a resolução de um processo?</span>
+                <i class="accordion-icon fa-solid fa-chevron-down text-brand-gold"></i>
+              </button>
+              <div class="accordion-content">
+                <div class="p-6 bg-white text-gray-600 border-t border-gray-100 leading-relaxed">
+                  O tempo de um processo varia conforme a complexidade do caso e a vara judicial. No entanto, nossa equipe trabalha com agilidade processual e acompanhamento diário para garantir a maior celeridade possível.
+                </div>
+              </div>
+            </div>
+            <!-- FAQ Item 2 -->
+            <div class="border border-gray-200 rounded-lg overflow-hidden">
+              <button class="accordion-btn w-full flex justify-between items-center p-6 bg-brand-light hover:bg-brand-blue/10 transition-colors focus:outline-none">
+                <span class="text-lg font-bold text-brand-dark text-left font-playfair">Como funciona a primeira consulta?</span>
+                <i class="accordion-icon fa-solid fa-chevron-down text-brand-gold"></i>
+              </button>
+              <div class="accordion-content">
+                <div class="p-6 bg-white text-gray-600 border-t border-gray-100 leading-relaxed">
+                  A primeira consulta é uma reunião estratégica para entendermos os detalhes do seu caso. Analisamos documentos, ouvimos seu relato e traçamos as primeiras linhas de defesa ou ação. Pode ser realizada presencialmente ou online.
+                </div>
+              </div>
+            </div>
+            <!-- FAQ Item 3 -->
+            <div class="border border-gray-200 rounded-lg overflow-hidden">
+              <button class="accordion-btn w-full flex justify-between items-center p-6 bg-brand-light hover:bg-brand-blue/10 transition-colors focus:outline-none">
+                <span class="text-lg font-bold text-brand-dark text-left font-playfair">Vocês atendem em quais regiões do país?</span>
+                <i class="accordion-icon fa-solid fa-chevron-down text-brand-gold"></i>
+              </button>
+              <div class="accordion-content">
+                <div class="p-6 bg-white text-gray-600 border-t border-gray-100 leading-relaxed">
+                  Embora nossa sede seja física, atuamos em todo o território nacional através do sistema de processo eletrônico e de parcerias estratégicas, garantindo defesa de excelência onde você estiver.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contato" class="py-20 bg-brand-blue/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+            
+            <!-- Form -->
+            <div class="bg-white p-8 md:p-10 rounded-lg shadow-xl">
+              <h3 class="text-2xl font-playfair font-bold text-brand-dark mb-6">Envie sua Mensagem</h3>
+              <form onsubmit="event.preventDefault(); alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');">
+                <div class="space-y-6">
+                  <div>
+                    <label htmlFor="name" class="block text-sm font-medium text-gray-700 mb-1">Nome Completo</label>
+                    <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all bg-slate-50" placeholder="Seu nome" required />
+                  </div>
+                  
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label htmlFor="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                      <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all bg-slate-50" placeholder="seu@email.com" required />
+                    </div>
+                    <div>
+                      <label htmlFor="phone" class="block text-sm font-medium text-gray-700 mb-1">Telefone</label>
+                      <input type="tel" id="phone" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all bg-slate-50" placeholder="(00) 00000-0000" />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="message" class="block text-sm font-medium text-gray-700 mb-1">Mensagem</label>
+                    <textarea id="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all bg-slate-50 resize-none" placeholder="Descreva brevemente o seu caso..." required></textarea>
+                  </div>
+
+                  <button type="submit" class="w-full bg-brand-dark hover:bg-gray-800 text-white font-bold py-4 rounded shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    Enviar Solicitação
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="flex flex-col justify-center">
+              <h4 class="text-brand-gold font-bold uppercase tracking-widest mb-2 text-sm">Fale Conosco</h4>
+              <h2 class="text-3xl md:text-4xl font-playfair font-bold text-brand-dark mb-8">Estamos prontos para defender você.</h2>
+              <p class="text-gray-600 mb-10 text-lg">
+                Entre em contato agora mesmo para agendar uma consulta inicial. Garantimos sigilo absoluto e atendimento prioritário.
+              </p>
+
+              <div class="space-y-8">
+                <div class="flex items-start">
+                  <div class="flex-shrink-0 w-12 h-12 bg-brand-gold rounded-lg flex items-center justify-center text-white text-xl shadow-lg">
+                    <i class="fa-solid fa-location-dot"></i>
+                  </div>
+                  <div class="ml-6">
+                    <h5 class="text-lg font-bold text-brand-dark">Endereço</h5>
+                    <p class="text-gray-600">PSG. Rosa Vermelha, 302 - Guanabara<br />Ananindeua - PA, 67010-320</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start">
+                  <div class="flex-shrink-0 w-12 h-12 bg-brand-gold rounded-lg flex items-center justify-center text-white text-xl shadow-lg">
+                    <i class="fa-solid fa-phone"></i>
+                  </div>
+                  <div class="ml-6">
+                    <h5 class="text-lg font-bold text-brand-dark">Telefone</h5>
+                    <p class="text-gray-600">(91) 99999-9999<br />(91) 3333-3333</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start">
+                  <div class="flex-shrink-0 w-12 h-12 bg-brand-gold rounded-lg flex items-center justify-center text-white text-xl shadow-lg">
+                    <i class="fa-solid fa-envelope"></i>
+                  </div>
+                  <div class="ml-6">
+                    <h5 class="text-lg font-bold text-brand-dark">Email</h5>
+                    <p class="text-gray-600">contato@dntadvocacia.com.br<br />juridico@dntadvocacia.com.br</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-dark text-white pt-16 pb-8 border-t border-slate-700">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-10">
+          <div class="mb-6 md:mb-0">
+             <a href="#" class="text-3xl font-bold font-playfair tracking-wide text-white">
+              DNT <span class="text-brand-gold">Advocacia</span>
+            </a>
+          </div>
+          
+          <div class="flex space-x-8">
+            <a href="#home" class="text-sm text-gray-400 hover:text-brand-gold transition-colors">Home</a>
+            <a href="#sobre" class="text-sm text-gray-400 hover:text-brand-gold transition-colors">Sobre</a>
+            <a href="#servicos" class="text-sm text-gray-400 hover:text-brand-gold transition-colors">Serviços</a>
+            <a href="#contato" class="text-sm text-gray-400 hover:text-brand-gold transition-colors">Contato</a>
+          </div>
+        </div>
+
+        <div class="border-t border-slate-700 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+          <p>&copy; 2025 DNT. Todos os direitos reservados.</p>
+          <div class="mt-4 md:mt-0 flex space-x-4">
+             <a href="https://www.linkedin.com/in/dileno-n-tavares-32336ba7/?skipRedirect=true" class="hover:text-white transition-colors"><i class="fa-brands fa-linkedin text-xl"></i></a>
+             <a href="https://www.instagram.com/dilenotavares/" class="hover:text-white transition-colors"><i class="fa-brands fa-instagram text-xl"></i></a>
+             <a href="https://www.facebook.com/profile.php?id=100092165346174" class="hover:text-white transition-colors"><i class="fa-brands fa-facebook text-xl"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- INTERACTIVITY SCRIPTS -->
+    <script>
+      // Header Scroll Effect
+      const header = document.getElementById('header');
+      const logo = document.getElementById('logo');
+      const navLinks = document.querySelectorAll('.nav-link');
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 20) {
+          header.classList.remove('bg-transparent', 'py-4');
+          header.classList.add('bg-white', 'shadow-md', 'py-2');
+          
+          // Change Text Colors for Light Background
+          logo.classList.remove('md:text-white');
+          logo.classList.add('text-brand-dark');
+          
+          navLinks.forEach(link => {
+            link.classList.remove('text-white');
+            link.classList.add('text-gray-700');
+          });
+
+          mobileMenuBtn.classList.remove('md:text-white');
+          
+        } else {
+          header.classList.add('bg-transparent', 'py-4');
+          header.classList.remove('bg-white', 'shadow-md', 'py-2');
+          
+          // Revert Text Colors for Dark Background
+          logo.classList.add('md:text-white');
+          // logo.classList.remove('text-brand-dark'); // Keep base color logic if needed, but md:text-white overrides
+          
+          navLinks.forEach(link => {
+            link.classList.add('text-white');
+            link.classList.remove('text-gray-700');
+          });
+
+          mobileMenuBtn.classList.add('md:text-white');
+        }
+      });
+
+      // Mobile Menu Toggle
+      const btn = document.getElementById('mobile-menu-btn');
+      const menu = document.getElementById('mobile-menu');
+      const icon = document.getElementById('mobile-menu-icon');
+      const mobileLinks = document.querySelectorAll('.mobile-link');
+
+      btn.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+        if (menu.classList.contains('hidden')) {
+          icon.classList.remove('fa-times');
+          icon.classList.add('fa-bars');
+        } else {
+          icon.classList.remove('fa-bars');
+          icon.classList.add('fa-times');
+        }
+      });
+
+      // Close mobile menu on link click
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          menu.classList.add('hidden');
+          icon.classList.remove('fa-times');
+          icon.classList.add('fa-bars');
+        });
+      });
+
+      // FAQ Accordion
+      const accordions = document.querySelectorAll('.accordion-btn');
+
+      accordions.forEach(acc => {
+        acc.addEventListener('click', function() {
+          const content = this.nextElementSibling;
+          const icon = this.querySelector('.accordion-icon');
+
+          // Toggle current
+          content.classList.toggle('active');
+          icon.classList.toggle('rotate-180');
+
+          // Close others (optional, keeps only one open)
+          accordions.forEach(otherAcc => {
+            if (otherAcc !== this) {
+              const otherContent = otherAcc.nextElementSibling;
+              const otherIcon = otherAcc.querySelector('.accordion-icon');
+              otherContent.classList.remove('active');
+              otherIcon.classList.remove('rotate-180');
+            }
+          });
+        });
+      });
+    </script>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
